@@ -1,0 +1,78 @@
+# ==========================================
+# 1. Node.js & React (Frontend & Backend)
+# ==========================================
+# Never commit the massive node_modules folder. 
+# Anyone cloning your repo will run 'npm install' to generate their own.
+node_modules/
+
+# Keep production builds out of source control
+build/
+dist/
+
+# Ignore npm error logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# ==========================================
+# 2. Python (The AI Brain)
+# ==========================================
+# Never push your virtual environment bubble. 
+# Other developers will create their own using your requirements.txt.
+venv/
+env/
+.env_python/
+
+# Ignore Python's compiled bytecode (makes repos messy)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore the temporary files generated during analysis
+temp_image.jpg
+*.tmp
+
+
+# ==========================================
+# 3. Machine Learning & Large Files
+# ==========================================
+# Never push AI weights or massive datasets to GitHub.
+# GitHub has a strict 100MB file limit and will block your push.
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.weights
+*.model
+
+
+# ==========================================
+# 4. Security & Environment Variables
+# ==========================================
+# CRITICAL: Never push your secret keys, database passwords, or API keys!
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+
+# ==========================================
+# 5. OS Generated Files & Editor configs
+# ==========================================
+# Ignore hidden files created by Mac or Windows
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ignore VS Code or IDE specific settings
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
