@@ -64,7 +64,7 @@ function AgeEstimator() {
   };
 
   return (
-    <div className="min-vh-100 bg-light py-5">
+    <div className="min-vh-100 dark-auth-bg py-5">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-8">
@@ -83,7 +83,7 @@ function AgeEstimator() {
                   {useWebcam ? (
                     <div className="d-flex flex-column align-items-center">
                       <Webcam audio={false} ref={webcamRef} screenshotFormat="image/jpeg" className="img-fluid rounded shadow-sm border" style={{ width: "100%", maxWidth: "400px" }} />
-                      <button className="btn btn-warning mt-3 w-50 fw-bold" onClick={capturePhoto}>📸 Snap Photo</button>
+                      <button className="btn btn-warning mt-3 w-50 fw-bold" onClick={capturePhoto}>Snap Photo</button>
                     </div>
                   ) : previewUrl ? (
                     <img src={previewUrl} className="img-fluid rounded shadow-sm border" alt="Your Upload" style={{ width: "100%", maxWidth: "400px" }} />

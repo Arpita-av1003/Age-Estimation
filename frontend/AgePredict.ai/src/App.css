@@ -42,3 +42,106 @@
     transform: rotate(360deg);
   }
 }
+
+.glass-navbar {
+  background-color: black !important; 
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+}
+
+
+.btn-custom-purple {
+  background-color: #0dcaf0; 
+  color: white;
+  border: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-custom-purple:hover {
+  background-color: #0dcaf0; 
+  color: white;
+  transform: translateY(-1px); 
+}
+
+
+.bg-pure-black {
+  background-color: #000000;
+}
+
+.footer-link {
+  color: #adb5bd; 
+  transition: color 0.2s ease-in-out;
+}
+
+.footer-link:hover {
+  color: #0dcaf0 !important; 
+  text-decoration: none !important;
+}
+
+
+.social-icon {
+  transition: opacity 0.2s ease-in-out;
+  opacity: 0.8;
+}
+.social-icon:hover {
+  opacity: 1;
+}
+
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #0dcaf0 !important; 
+  font-weight: 600;
+}
+
+.dark-auth-bg {
+  background-color: #131418; 
+  min-height: 100vh;
+}
+
+.dark-auth-card {
+  background-color: #25262b !important;
+  border: 1px solid #373a40 !important;
+  border-radius: 12px !important;
+}
+
+/* The Dark Input Fields */
+.dark-auth-input {
+  background-color: #141517 !important;
+  border: 1px solid #373a40 !important;
+  color: #c1c2c5 !important;
+}
+
+.dark-auth-input::placeholder {
+  color: #5c5f66 !important;
+}
+
+/* Glow effect when typing */
+.dark-auth-input:focus {
+  border-color: #4ae5d0 !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+}
+
+/* The Cyan Button */
+.btn-cyan {
+  background-color: #4ae5d0 !important;
+  color: #000000 !important;
+  font-weight: 500 !important;
+  border: none !important;
+  transition: all 0.2s ease;
+}
+
+.btn-cyan:hover {
+  background-color: #3bc9b6 !important;
+}
+
+/* Cyan Text Links */
+.text-cyan {
+  color: #4ae5d0 !important;
+  transition: color 0.2s ease;
+}
+
+.text-cyan:hover {
+  color: #3bc9b6 !important;
+}
