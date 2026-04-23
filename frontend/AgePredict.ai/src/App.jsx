@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./App.css";
 
-// Your imports...
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -15,8 +15,8 @@ import SignupPage from "./components/SignupPage";
 import AgeEstimator from "./components/AgeEstimator";
 import TermsPage from "./components/TermsPage";
 import UserReview from "./components/UserReview";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-// 1. Create a layout wrapper for pages that SHOULD have the Nav and Footer
 const MainLayout = ({ children }) => {
   return (
     <div className="d-flex flex-column min-vh-100">
@@ -27,26 +27,31 @@ const MainLayout = ({ children }) => {
   );
 };
 
+const WorkspaceLayout = ({ children }) => {
+  return (
+    <div className="d-flex flex-column vh-100 overflow-hidden dashboard-dark-bg">
+      <Navbar />
+      <main className="flex-grow-1 overflow-auto hide-scrollbar">{children}</main>
+    </div>
+  );
+}
+
 function App() {
   return (
     <Router>
       <ScrollToTop />
       <Routes>
-        
-        {/* ========================================= */}
-        {/* PAGES WITHOUT NAV & FOOTER (Standalone)   */}
-        {/* ========================================= */}
+
+
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/contact" element={<ContactPage />} />
 
-        {/* ========================================= */}
-        {/* PAGES WITH NAV & FOOTER                   */}
-        {/* ========================================= */}
+
         <Route path="/" element={<MainLayout><LandingPage /></MainLayout>} />
         <Route path="/about" element={<MainLayout><AboutPage /></MainLayout>} />
-        
-        <Route path="/app" element={<MainLayout><AgeEstimator /></MainLayout>} />
+       <Route path="/app" element={<ProtectedRoute><WorkspaceLayout><AgeEstimator /></WorkspaceLayout></ProtectedRoute>} />
+    <Route path="/app" element={<ProtectedRoute><WorkspaceLayout><AgeEstimator /></WorkspaceLayout></ProtectedRoute>} />
         <Route path="/terms" element={<MainLayout><TermsPage /></MainLayout>} />
         <Route path="/reviews" element={<MainLayout><UserReview /></MainLayout>} />
 

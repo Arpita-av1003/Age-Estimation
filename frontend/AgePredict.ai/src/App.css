@@ -105,7 +105,6 @@
   border-radius: 12px !important;
 }
 
-/* The Dark Input Fields */
 .dark-auth-input {
   background-color: #141517 !important;
   border: 1px solid #373a40 !important;
@@ -116,16 +115,13 @@
   color: #5c5f66 !important;
 }
 
-/* Glow effect when typing */
 .dark-auth-input:focus {
-  border-color: #4ae5d0 !important;
+  border-color: #0dcaf0 !important;
   box-shadow: none !important;
   color: #ffffff !important;
 }
-
-/* The Cyan Button */
 .btn-cyan {
-  background-color: #4ae5d0 !important;
+  background-color: #0dcaf0 !important;
   color: #000000 !important;
   font-weight: 500 !important;
   border: none !important;
@@ -133,15 +129,141 @@
 }
 
 .btn-cyan:hover {
-  background-color: #3bc9b6 !important;
+  background-color:#0dcaf0 !important;
 }
-
-/* Cyan Text Links */
 .text-cyan {
-  color: #4ae5d0 !important;
+  color: #0dcaf0 !important;
   transition: color 0.2s ease;
 }
 
 .text-cyan:hover {
-  color: #3bc9b6 !important;
+  color: #0dcaf0 !important;
+}
+
+
+.ai-scanner-box {
+  border: 2px dashed #0dcaf0;
+  background-color: rgba(74, 229, 208, 0.05);
+  transition: all 0.3s ease;
+}
+
+.ai-analyzing {
+  animation: pulse-border 1.5s infinite;
+}
+
+@keyframes pulse-border {
+  0% { box-shadow: 0 0 0 0 rgba(74, 229, 208, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(74, 229, 208, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 229, 208, 0); }
+}
+
+.dashboard-bg {
+  background-color: #f8f9fa; 
+}
+
+.dashboard-dark-bg {
+  background-color: #1a1b1e;
+  padding-bottom: 2rem;
+}
+
+
+.dark-panel {
+  background-color: #25262b;
+  border: 1px solid #373a40;
+  border-radius: 16px;
+}
+
+.ai-scanner-box-dark {
+  border: 2px dashed #373a40;
+  background-color: #141517;
+  transition: all 0.3s ease;
+  min-height: 400px;
+}
+
+.ai-analyzing {
+  border-color: #0dcaf0;
+  animation: pulse-cyan 1.5s infinite;
+}
+
+@keyframes pulse-cyan {
+  0% { box-shadow: 0 0 0 0 rgba(74, 229, 208, 0.3); }
+  70% { box-shadow: 0 0 0 15px rgba(74, 229, 208, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 229, 208, 0); }
+}
+
+.dark-tab {
+  background-color: transparent;
+  color: #c1c2c5;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.dark-tab:hover {
+  color: #ffffff;
+  background-color: rgba(255,255,255,0.02);
+}
+
+.dark-tab.active {
+  color: #0dcaf0;
+  border-bottom: 3px solid #0dcaf0;
+  background-color: rgba(74, 229, 208, 0.05);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; 
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}
+
+.ai-scanner-box-dark {
+  border: 2px dashed #373a40;
+  background-color: #141517;
+  transition: all 0.3s ease;
+  min-height: 250px; 
+}
+.text-gradient-cyan {
+  background: linear-gradient(to right, #4ae5d0, #3bc9b6, #635bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+.icon-box {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(74, 229, 208, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Customizing the Bootstrap Carousel for Dark Theme */
+.custom-carousel-indicators [data-bs-target] {
+  background-color: #5c5f66;
+  height: 6px;
+  border-radius: 4px;
+  width: 30px;
+  transition: all 0.3s ease;
+}
+
+.custom-carousel-indicators .active {
+  background-color: #4ae5d0;
+  width: 40px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(1) grayscale(100) brightness(200); /* Makes arrows pure white */
+}
+
+/* Optional: Make the cards wider in the carousel */
+.carousel-feature-card {
+  max-width: 600px;
+  margin: 0 mx-auto;
 }

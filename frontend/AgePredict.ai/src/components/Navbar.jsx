@@ -19,7 +19,7 @@ function Navbar() {
             <li className="nav-item"><NavLink className="nav-link" to="/">Home</NavLink></li>
             <li className="nav-item me-2"><NavLink className="nav-link" to="/login">Login</NavLink></li>
             <li className="nav-item me-3"><NavLink className="nav-link" to="/signup">Sign Up</NavLink></li>
-            <li className="nav-item me-3"><NavLink className="nav-link" to="/contact">Contact Us</NavLink></li>
+
             <li className="nav-item border-start border-secondary ps-3"><Link className="btn btn-info btn-sm px-3 rounded" to="/app">Try for Free</Link></li>
           </ul>
         </div>

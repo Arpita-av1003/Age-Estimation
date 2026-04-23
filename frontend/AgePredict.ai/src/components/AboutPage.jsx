@@ -30,7 +30,7 @@ const About = () => {
             <div className="col-lg-10">
               <h3 className="display-4  mb-3">Our Mission</h3>
               <p className='lead text-white'>
-                We built AgeReveal to demonstrate the power of deep learning
+                We built AgePredict.ai to demonstrate the power of deep learning
                 Convolutional Neural Networks (CNNs). By analyzing thousands of
                 facial micro-features, our AI attempts to understand how the
                 human eye perceives age.
