@@ -2,7 +2,7 @@ import React from "react";
 
 function ContactPage() {
   return (
-    <div className="dark-auth-bg d-flex align-items-center justify-content-center py-4">
+    <div className="theme-navy-bg d-flex align-items-center justify-content-center py-4">
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-lg-4">

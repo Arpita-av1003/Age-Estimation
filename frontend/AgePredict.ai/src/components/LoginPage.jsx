@@ -52,7 +52,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="dark-auth-bg d-flex align-items-center justify-content-center py-5">
+    <div className="theme-navy-bg d-flex align-items-center justify-content-center py-5">
       <div className="card dark-auth-card shadow-lg border-0 rounded-lg" style={{ maxWidth: "450px", width: "100%" }}>
         <div className="card-body p-5">
           <img className="d-block mx-auto mb-2" src={myLogo} alt="Logo" width="30" height="24" />

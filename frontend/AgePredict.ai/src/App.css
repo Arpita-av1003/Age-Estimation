@@ -243,27 +243,176 @@
   margin-bottom: 1.5rem;
 }
 
-/* Customizing the Bootstrap Carousel for Dark Theme */
-.custom-carousel-indicators [data-bs-target] {
-  background-color: #5c5f66;
-  height: 6px;
-  border-radius: 4px;
-  width: 30px;
+/*  LANDING PAGE THEME          */
+
+
+.theme-navy-bg {
+  background-color: #0b0f24; /* Deep Navy Blue */
+  color: #ffffff;
+  overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.theme-navy-light {
+  background-color: #131835; /* Slightly lighter navy for cards */
+}
+
+.text-info {
+  color:  #0dcaf0 !important;
+}
+
+/* Custom Orange Buttons */
+.btn-info {
+  background-color: #0dcaf0;;
+  color: white;
+  border: none;
+  font-weight: 600;
   transition: all 0.3s ease;
 }
 
-.custom-carousel-indicators .active {
-  background-color: #4ae5d0;
-  width: 40px;
+.btn-info:hover {
+  background-color: #0dcaf0;;
+  color: white;
+  transform: translateY(-2px);
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  filter: invert(1) grayscale(100) brightness(200); /* Makes arrows pure white */
+.btn-outline-light-custom {
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  font-weight: 600;
 }
 
-/* Optional: Make the cards wider in the carousel */
-.carousel-feature-card {
-  max-width: 600px;
-  margin: 0 mx-auto;
+.btn-outline-light-custom:hover {
+  background-color: rgba(255,255,255,0.1);
+  color: white;
+}
+
+/* Circular Image Layouts */
+.hero-circle-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  border: 12px solid rgba(255, 122, 48, 0.15); /* Faded orange outer ring */
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.hero-circle-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Floating Badge on Hero Image */
+.floating-badge {
+  position: absolute;
+  bottom: 10%;
+  left: -5%;
+  background-color: #131835;
+  border-left: 4px solid  #0dcaf0;;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+/* 4-Column Feature Cards */
+.feature-card-navy {
+  background-color: #131835;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  transition: transform 0.3s ease;
+  height: 100%;
+}
+
+.feature-card-navy:hover {
+  transform: translateY(-5px);
+  background-color: #1a2042;
+}
+
+.icon-box-info {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 122, 48, 0.1);
+  color: #0dcaf0;;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* About Page ke chize */
+.hero-section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: white;
+}
+
+.hero-text {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: #b5b5b5;
+  max-width: 520px;
+}
+
+.about-page {
+  overflow-x: hidden;
+}
+
+/* Tablet */
+@media (max-width: 991px) {
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .hero-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .container {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+/* faqs ka */
+/* Custom Dark Accordion Styles */
+.custom-dark-accordion .accordion-button {
+  background-color: transparent !important;
+  color: white !important;
+}
+.custom-dark-accordion .accordion-button:not(.collapsed) {
+  color: #0dcaf0 !important; /* Cyan color when opened */
+  box-shadow: none;
+}
+/* Invert the black arrow icon to white */
+.custom-dark-accordion .accordion-button::after {
+  filter: invert(1); 
+}
+
+/* uses cases */
+.transition-all {
+  transition: all 0.3s ease;
+}
+.transition-all:hover {
+  transform: translateY(-8px);
+  border-color: #0dcaf0 !important; 
 }

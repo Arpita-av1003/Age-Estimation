@@ -40,12 +40,12 @@ function UserReview() {
   };
 
   return (
-    <div className="bg-info min-vh-100 py-5">
+    <div className="theme-navy-bg min-vh-100 py-5">
       <div className="container py-4">
         
         <div className="text-center mb-5 pb-3">
           <h1 className="display-4 fw-bold mb-3">Trusted by Developers</h1>
-          <p className="lead text-dark mx-auto" style={{ maxWidth: "600px" }}>
+          <p className="lead text-white mx-auto" style={{ maxWidth: "600px" }}>
             See how teams are using AgePredict.ai to secure their platforms and automate age verification without compromising user privacy.
           </p>
         </div>

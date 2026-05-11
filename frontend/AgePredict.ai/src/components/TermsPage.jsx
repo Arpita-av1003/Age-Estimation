@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 function TermsPage() {
   return (
-    <div className="bg-info min-vh-100 py-5">
-      <div className="container py-4">
-        <div className="row justify-content-center">
-          <div className="col-lg-10">
-            <div className="card shadow-sm border-0 rounded-4 p-5">
+    <div className="theme-navy-bg min-vh-100 py-5">
+      <div className="container py-4 ">
+        <div className="row justify-content-center ">
+          <div className="col-lg-10 ">
+            <div className="card shadow-sm border-0  rounded-4 p-5">
               
               <div className="text-center mb-2">
                 <h1 className="fw-bold display-5">Terms and Conditions</h1>
