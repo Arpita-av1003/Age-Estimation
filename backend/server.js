@@ -10,16 +10,22 @@ const jwt = require('jsonwebtoken');
 const User = require('./models/User');
 
 const app = express();
-// Allow requests from React
 app.use(cors()); 
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('✅ Connected to MongoDB successfully!'))
-  .catch((err) => console.error('❌ MongoDB connection error:', err));
+  .then(() => console.log(' Connected to MongoDB successfully!'))
+  .catch((err) => console.error(' MongoDB connection error:', err));
 
-// --- SIGN UP ROUTE ---
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "Backend is running"
+  });
+});
+
+  //SIGN UP ROUTE
 app.post('/api/signup', async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -37,7 +43,7 @@ app.post('/api/signup', async (req, res) => {
   }
 });
 
-// --- LOGIN ROUTE ---
+//LOGIN ROUTE
 app.post('/api/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -57,20 +63,18 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// --- AI ANALYSIS ROUTE (FIXED) ---
-// React sends JSON Base64 -> Node converts to Buffer -> Node sends to Python
+//AI ROUTE
+
 app.post('/api/analyze', async (req, res) => {
     try {
         const { imageBase64 } = req.body;
         if (!imageBase64) return res.status(400).json({ error: 'No image provided' });
 
-        // 1. Strip the HTML prefix from the base64 string
         const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, "");
         
-        // 2. Convert it into a binary buffer
+
         const imageBuffer = Buffer.from(base64Data, 'base64');
 
-        // 3. Package it as a file to send to your Python ML server (Port 5000)
         const formData = new FormData();
         formData.append('file', imageBuffer, 'capture.jpg');
 
@@ -78,7 +82,6 @@ app.post('/api/analyze', async (req, res) => {
             headers: formData.getHeaders()
         });
 
-        // 4. Send the result back to React
         res.json({ 
             estimated_age: mlResponse.data.estimated_age,
             confidence_score: mlResponse.data.confidence || "95.5%" 
