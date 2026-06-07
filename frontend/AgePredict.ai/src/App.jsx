@@ -51,7 +51,7 @@ function App() {
         <Route path="/" element={<MainLayout><LandingPage /></MainLayout>} />
         <Route path="/about" element={<MainLayout><AboutPage /></MainLayout>} />
        <Route path="/app" element={<ProtectedRoute><WorkspaceLayout><AgeEstimator /></WorkspaceLayout></ProtectedRoute>} />
-    <Route path="/app" element={<ProtectedRoute><WorkspaceLayout><AgeEstimator /></WorkspaceLayout></ProtectedRoute>} />
+       <Route path="/app" element={<ProtectedRoute><WorkspaceLayout><AgeEstimator /></WorkspaceLayout></ProtectedRoute>} />
         <Route path="/terms" element={<MainLayout><TermsPage /></MainLayout>} />
         <Route path="/reviews" element={<MainLayout><UserReview /></MainLayout>} />
 
