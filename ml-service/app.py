@@ -3,7 +3,7 @@ from deepface import DeepFace
 import os
 import tensorflow as tf
 
-# Disable warnings
+
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
 app = Flask(__name__)
@@ -11,7 +11,7 @@ app = Flask(__name__)
 print("\nLoading AI Brain (VGG-Face)...")
 model_name = "VGG-Face"
 DeepFace.build_model(model_name)
-print("✅ AI Brain is ready.\n")
+print("AI Brain is ready.\n")
 
 @app.route('/predict', methods=['POST'])
 def predict_age():
@@ -23,8 +23,6 @@ def predict_age():
     file.save(temp_path)
     
     try:
-        # Only looking for age
-      # Cleaned up: No more model_name, and kept enforce_detection=False
         result = DeepFace.analyze(
             img_path=temp_path, 
             actions=['age'], 
@@ -41,7 +39,6 @@ def predict_age():
         if os.path.exists(temp_path):
             os.remove(temp_path)
             
-        # NEW: Instead of a generic message, send the ACTUAL system error to React!
         print(f"CRASH REPORT: {str(e)}") 
         return jsonify({'error': f"SYSTEM ERROR: {str(e)}"}), 500
 
