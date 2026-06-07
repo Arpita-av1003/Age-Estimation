@@ -78,9 +78,13 @@ app.post('/api/analyze', async (req, res) => {
         const formData = new FormData();
         formData.append('file', imageBuffer, 'capture.jpg');
 
-        const mlResponse = await axios.post('http://localhost:5000/predict', formData, {
-            headers: formData.getHeaders()
-        });
+     const mlResponse = await axios.post(
+  `${process.env.ML_SERVICE_URL}/predict`,
+  formData,
+  {
+    headers: formData.getHeaders()
+  }
+);
 
         res.json({ 
             estimated_age: mlResponse.data.estimated_age,
@@ -93,4 +97,8 @@ app.post('/api/analyze', async (req, res) => {
     }
 });
 
-app.listen(3001, () => console.log('✅ Node Middleman running on port 3001'));
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Node Middleman running on port ${PORT}`);
+});
