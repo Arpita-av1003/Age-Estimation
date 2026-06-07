@@ -97,7 +97,7 @@ app.post('/api/analyze', async (req, res) => {
     }
 });
 
-const API_URL = "https://age-estimation-kge3.onrender.com";
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`Node Middleman running on port ${PORT}`);
