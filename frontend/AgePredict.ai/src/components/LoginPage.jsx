@@ -27,8 +27,8 @@ function LoginPage() {
     setLoading(true);
 
     try {
-    
-      const response = await axios.post("https://age-estimation-kge3.onrender.com/api/login", formData);
+      const API_URL = import.meta.env.VITE_API_URL;
+      const response = await axios.post(`${API_URL}/api/login`, formData);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userName", response.data.name); 
 

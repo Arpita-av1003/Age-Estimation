@@ -77,9 +77,9 @@ function AgeEstimator() {
 
     try {
       const token = localStorage.getItem("token");
-
+      const API_URL = import.meta.env.VITE_API_URL;
       const response = await axios.post(
-        "https://age-estimation-kge3.onrender.com/api/analyze",
+        `${API_URL}/api/analyze`,
         { imageBase64: imageSrc },
         {
           headers: {

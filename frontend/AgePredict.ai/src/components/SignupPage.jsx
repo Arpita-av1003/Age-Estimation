@@ -23,7 +23,8 @@ function SignupPage() {
     setLoading(true);
 
     try {
-      const response = await axios.post("https://age-estimation-kge3.onrender.com/api/signup", formData);
+      const API_URL = import.meta.env.VITE_API_URL;
+      const response = await axios.post(`${API_URL}/api/signup`, formData);
       alert(response.data.message);
       navigate("/login");
 
