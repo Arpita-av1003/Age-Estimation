@@ -78,12 +78,12 @@ app.post('/api/analyze', async (req, res) => {
         const formData = new FormData();
         formData.append('file', imageBuffer, 'capture.jpg');
 
-  const mlResponse = await axios.post(
-    'https://age-ml-service.onrender.com/predict',
-    formData,
-    {
-        headers: formData.getHeaders()
-    }
+const mlResponse = await axios.post(
+  "https://age-ml-service.onrender.com/predict",
+  formData,
+  {
+    headers: formData.getHeaders()
+  }
 );
 
         res.json({ 
