@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from "react";
 import Webcam from "react-webcam";
-import axios from "axios"; // Added axios import
+import axios from "axios"; 
 
 function AgeEstimator() {
   const [activeTab, setActiveTab] = useState("upload");
@@ -22,18 +22,15 @@ function AgeEstimator() {
 
     const reader = new FileReader();
     reader.onloadend = (event) => {
-      // 1. Create a temporary image object to hold the uploaded file
       const img = new Image();
       img.src = event.target.result;
 
       img.onload = () => {
-        // 2. Set the maximum width or height you want (e.g., 640px to match the webcam)
         const MAX_WIDTH = 640;
         const MAX_HEIGHT = 640;
         let width = img.width;
         let height = img.height;
 
-        // 3. Calculate the new dimensions while keeping the aspect ratio
         if (width > height) {
           if (width > MAX_WIDTH) {
             height *= MAX_WIDTH / width;
@@ -46,25 +43,20 @@ function AgeEstimator() {
           }
         }
 
-        // 4. Create an invisible canvas to redraw the image
+  
         const canvas = document.createElement("canvas");
         canvas.width = width;
         canvas.height = height;
         const ctx = canvas.getContext("2d");
         
-        // 5. Draw the resized image onto the canvas
         ctx.drawImage(img, 0, 0, width, height);
-
-        // 6. Export the canvas back to a Base64 string, compressing it to 80% quality
         const compressedBase64 = canvas.toDataURL("image/jpeg", 0.8);
 
-        // 7. Save the tiny, fast string to React!
         setImageSrc(compressedBase64);
         setResult(null);
       };
     };
     
-    // Start reading the file
     reader.readAsDataURL(file);
   };
 
@@ -73,12 +65,7 @@ function AgeEstimator() {
     setResult(null);
   };
 
-  // ==========================================
   // REAL API INTEGRATION
-  // ==========================================
-  // ==========================================
-  // REAL API INTEGRATION
-  // ==========================================
   const analyzeFace = async () => {
     if (!imageSrc) {
       alert("Please capture or upload an image first.");
@@ -86,15 +73,13 @@ function AgeEstimator() {
     }
 
     setIsAnalyzing(true);
-    setResult(null); // Clear previous results
+    setResult(null); 
 
     try {
-      // Grab the JWT token from local storage for secure access
       const token = localStorage.getItem("token");
 
-      // Send the base64 image to your Node.js backend on Port 3001
       const response = await axios.post(
-        "http://localhost:3001/api/analyze",
+        "https://age-estimation-kge3.onrender.com/api/analyze",
         { imageBase64: imageSrc },
         {
           headers: {
@@ -104,7 +89,6 @@ function AgeEstimator() {
         },
       );
 
-      // Update the UI with the real data from your AI model
       setResult({
         age: response.data.estimated_age || response.data.age,
         confidence: response.data.confidence_score || response.data.confidence,
@@ -115,12 +99,12 @@ function AgeEstimator() {
         error.response?.data?.error || "Failed to connect to the Node backend.",
       );
     } finally {
-      setIsAnalyzing(false); // Stop the loading animation
+      setIsAnalyzing(false); 
     }
   };
 
   const videoConstraints = {
-    width: 640, // Forces the camera to capture a smaller resolution
+    width: 640, 
     height: 480,
     facingMode: "user",
   };

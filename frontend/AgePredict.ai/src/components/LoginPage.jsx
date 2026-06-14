@@ -7,37 +7,31 @@ import googleLogo from "../assets/google.png";
 function LoginPage() {
   const navigate = useNavigate();
 
-  // 1. Form state
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   });
 
-  // 2. UI State
+
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // 3. Handle typing
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // 4. Handle Login Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
 
     try {
-      // Send login request to Node.js
-      const response = await axios.post("http://localhost:3001/api/login", formData);
-      
-      // Node.js sent back the VIP Pass (Token)! Let's save it to the browser.
+    
+      const response = await axios.post("https://age-estimation-kge3.onrender.com/api/login", formData);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userName", response.data.name); 
 
-      // Redirect them to the protected AI tool
       navigate("/app");
 
     } catch (err) {

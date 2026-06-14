@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function UserReview() {
-  // Hardcoded sample reviews for the UI
   const [reviews] = useState([
     {
       id: 1,
