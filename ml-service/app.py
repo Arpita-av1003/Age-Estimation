@@ -1,65 +1,97 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+import cv2
+import numpy as np
 import os
 
-# TensorFlow settings (must be before importing DeepFace)
-os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-
-from deepface import DeepFace
-import tensorflow as tf
-import gc
-
 app = Flask(__name__)
+CORS(app)
+
+# Age classes
+AGE_BUCKETS = [
+    "(0-2)", "(4-6)", "(8-12)", "(15-20)",
+    "(25-32)", "(38-43)", "(48-53)", "(60-100)"
+]
+
+# Approximate age values
+AGE_MAP = {
+    "(0-2)": 1,
+    "(4-6)": 5,
+    "(8-12)": 10,
+    "(15-20)": 18,
+    "(25-32)": 28,
+    "(38-43)": 40,
+    "(48-53)": 50,
+    "(60-100)": 70
+}
+
+MODEL_MEAN_VALUES = (78.4263377603, 87.7689143744, 114.895847746)
+
+# Load face detector
+faceProto = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
+faceCascade = cv2.CascadeClassifier(faceProto)
+
+# Load age model
+ageProto = "age_deploy.prototxt"
+ageModel = "age_net.caffemodel"
+ageNet = cv2.dnn.readNet(ageModel, ageProto)
 
 
 @app.route("/", methods=["GET"])
 def home():
     return jsonify({
         "status": "running",
-        "message": "Age Estimation ML Service is live"
+        "message": "Lightweight Age Estimation ML Service is live"
     })
 
 
 @app.route("/predict", methods=["POST"])
 def predict_age():
+
     if "file" not in request.files:
         return jsonify({"error": "No file uploaded"}), 400
 
     file = request.files["file"]
-    temp_path = "temp_image.jpg"
 
-    try:
-        # Save uploaded image
-        file.save(temp_path)
+    file_bytes = np.frombuffer(file.read(), np.uint8)
+    image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
 
-        # Run age prediction
-        result = DeepFace.analyze(
-            img_path=temp_path,
-            actions=["age"],
-            enforce_detection=False,
-            silent=True
-        )
+    if image is None:
+        return jsonify({"error": "Invalid image"}), 400
 
-        estimated_age = result[0]["age"]
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    faces = faceCascade.detectMultiScale(
+        gray,
+        scaleFactor=1.1,
+        minNeighbors=5,
+        minSize=(50, 50)
+    )
 
-        return jsonify({
-            "estimated_age": estimated_age
-        })
+    if len(faces) == 0:
+        return jsonify({"error": "No face detected"}), 400
 
-    except Exception as e:
-        print("CRASH REPORT:", str(e))
-        return jsonify({
-            "error": str(e)
-        }), 500
+    # Use first detected face
+    (x, y, w, h) = faces[0]
+    face = image[y:y+h, x:x+w]
 
-    finally:
-        # Always clean up temporary file and memory
-        if os.path.exists(temp_path):
-            os.remove(temp_path)
+    blob = cv2.dnn.blobFromImage(
+        face,
+        1.0,
+        (227, 227),
+        MODEL_MEAN_VALUES,
+        swapRB=False
+    )
 
-        gc.collect()
-        tf.keras.backend.clear_session()
+    ageNet.setInput(blob)
+    preds = ageNet.forward()
+
+    age_bucket = AGE_BUCKETS[preds[0].argmax()]
+    estimated_age = AGE_MAP[age_bucket]
+
+    return jsonify({
+        "estimated_age": estimated_age,
+        "age_range": age_bucket
+    })
 
 
 if __name__ == "__main__":
