@@ -32,8 +32,16 @@ faceProto = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
 faceCascade = cv2.CascadeClassifier(faceProto)
 
 # Load age model
-ageProto = "age_deploy.prototxt"
-ageModel = "age_net.caffemodel"
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+ageProto = os.path.join(BASE_DIR, "age_deploy.prototxt")
+ageModel = os.path.join(BASE_DIR, "age_net.caffemodel")
+
+print("Looking for:", ageProto)
+print("Looking for:", ageModel)
+
 ageNet = cv2.dnn.readNet(ageModel, ageProto)
 
 
